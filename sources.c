@@ -133,7 +133,7 @@ int print_number(int n)
  * print_rev - prints a string, in reverse, followed by a new line.
  * @s: input string.
  * Return: number of bytes
- */ 
+ */
 int print_rev(char *s)
 {
 	int count = 0;

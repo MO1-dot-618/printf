@@ -7,14 +7,13 @@
 
 
 
-int _printf(const char *format, ...)
+int _printf(const char *fmt, ...)
 {
 	int bytes = 0;
 	char *str;
-	const char *fmt = format;
 	va_list args;
 
-	va_start(args, format);
+	va_start(args, fmt);
 	_putchar(-2);
 	while (fmt && *fmt)
 	{
