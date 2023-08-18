@@ -3,27 +3,62 @@
 
 /**
  * _putchar - writes the character c to stdout
- * @c: The character to print
+ * @c: The character to print (ASCII code)
  *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * Return: number of bytes printed.
  */
-int _putchar(char c)
+int _putchar(int c)
 {
-	return (write(1, &c, 1));
+	static int count;
+	int cc;
+	static char buffer[1024];
+
+	/**
+	  * c == -2 means we are at the beginning of the function,
+	  * so we initialize count to 0 to start the index of the buffer
+	  * with 0.
+	  * c == -1 means we are at the end of the function
+	  * so we print whatever is left in the buffer
+	  */
+	if (c == -2)
+	{
+		count = 0;
+		return (0);
+	}
+	else if (count == 1024)
+	{
+		write(1, buffer, 1024);
+		count = 0;
+		return (1024);
+	}
+	else if (c == -1)
+	{
+		write(1, buffer, count);
+		cc = count;
+		count = 0;
+		return (cc);
+	}
+	else
+	{
+		buffer[count] = c;
+		count++;
+		return (0);
+	}
 }
 /**
  * _puts - prints a string, followed by a new line.
  * @str: input string.
+ * @byte: keeps count
  * Return: no return.
  */
-void _puts(char *str)
+int _puts(char *str)
 {
 	int count = 0;
+	int byte = 0;
 
-	while (count >= 0 && str[count] != '\0')
+	while (str[count] != '\0')
 	{
-		_putchar(str[count]);
+		byte = byte + _putchar(str[count]);
 		count++;
 	}
 }

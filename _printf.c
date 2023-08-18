@@ -9,11 +9,13 @@
 
 int _printf(const char *format, ...)
 {
+	int bytes = 0;
 	char *str;
 	const char *fmt = format;
 	va_list args;
 
 	va_start(args, format);
+	_putchar(-2);
 	while (fmt && *fmt)
 	{
 		if (*fmt == '%')
@@ -47,5 +49,6 @@ int _printf(const char *format, ...)
 		fmt++;
 	}
 	va_end(args);
+	_putchar(-1);
 	return (0);
 }
