@@ -50,5 +50,5 @@ int _printf(const char *format, ...)
 	}
 	va_end(args);
 	_putchar(-1);
-	return (0);
+	return (bytes);
 }
