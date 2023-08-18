@@ -40,7 +40,10 @@ int _printf(const char *format, ...)
 					_putchar('%');
 					break;
 			}
+			fmt++;
 		}
+		else
+			_putchar(*fmt);
 		fmt++;
 	}
 	va_end(args);

@@ -7,6 +7,10 @@
  */
 int main(void)
 {
-    _printf("%ce%i%s%%", 'B', 3, "stSchool");
+	char str[] = "bob is amazing at chess";
+	_putchar(*str);
+	_putchar('\n');
+    _printf("%c%c%czab%c%c%c%dtab%d%d%s%s3ad%s%c%s9abd%d%i%c", '%', '%', '%', '%', '%', '%', 44, 13, -3, "zab", "zaboune", "zaboub", 'Z', "zabbbb", 532, -434, '%');
+    _putchar('\n');
     return (0);
 }
