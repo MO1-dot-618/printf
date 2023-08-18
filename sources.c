@@ -10,7 +10,6 @@
 int _putchar(int c)
 {
 	static int count;
-	int cc;
 	static char buffer[1024];
 
 	/**
@@ -29,27 +28,25 @@ int _putchar(int c)
 	{
 		write(1, buffer, 1024);
 		count = 0;
-		return (1024);
+		return (0);
 	}
 	else if (c == -1)
 	{
 		write(1, buffer, count);
-		cc = count;
 		count = 0;
-		return (cc);
+		return (0);
 	}
 	else
 	{
 		buffer[count] = c;
 		count++;
-		return (0);
+		return (1);
 	}
 }
 /**
  * _puts - prints a string, followed by a new line.
  * @str: input string.
- * @byte: keeps count
- * Return: no return.
+ * Return: number of bytes
  */
 int _puts(char *str)
 {
@@ -61,6 +58,7 @@ int _puts(char *str)
 		byte = byte + _putchar(str[count]);
 		count++;
 	}
+	return (count);
 }
 /**
  * _atoi - converts a string to an integer.
@@ -98,16 +96,17 @@ int _atoi(char *s)
 /**
  * print_number - prints an integer.
  * @n: input integer.
- * Return: no return.
+ * Return: number of digits
  */
-void print_number(int n)
+int print_number(int n)
 {
-	unsigned int m, d, count;
+	unsigned int m, d, count, c = 0;
 
 	if (n < 0)
 	{
 		_putchar(45);
 		m = n * -1;
+		c++;
 	}
 	else
 	{
@@ -121,19 +120,21 @@ void print_number(int n)
 	{
 		d /= 10;
 		count *= 10;
+		c++;
 	}
 
 	for (; count >= 1; count /= 10)
 	{
 		_putchar(((m / count) % 10) + 48);
 	}
+	return (c + 1);
 }
 /**
  * print_rev - prints a string, in reverse, followed by a new line.
  * @s: input string.
- * Return: no return.
- */
-void print_rev(char *s)
+ * Return: number of bytes
+ */ 
+int print_rev(char *s)
 {
 	int count = 0;
 
@@ -147,4 +148,5 @@ void print_rev(char *s)
 	for (count--; count >= 0; count--)
 		_putchar(s[count]);
 	_putchar('\n');
+	return (count);
 }

@@ -23,29 +23,29 @@ int _printf(const char *format, ...)
 			switch (*(fmt + 1))
 			{
 				case 'c':
-					_putchar(va_arg(args, int));
+					bytes += _putchar(va_arg(args, int));
 					break;
 
 				case 'd':
 				case 'i':
-					print_number(va_arg(args, int));
+					bytes += print_number(va_arg(args, int));
 					break;
 
 				case 's':
 				{
 					str = va_arg(args, char*);
 					if (str != NULL)
-						_puts(str);
+						bytes += _puts(str);
 					break;
 				}
 				case '%':
-					_putchar('%');
+					bytes += _putchar('%');
 					break;
 			}
 			fmt++;
 		}
 		else
-			_putchar(*fmt);
+			bytes += _putchar(*fmt);
 		fmt++;
 	}
 	va_end(args);
