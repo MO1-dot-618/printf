@@ -53,6 +53,10 @@ int _puts(char *str)
 	int count = 0;
 	int byte = 0;
 
+	if (str == NULL)
+	{
+		return (0);
+	}
 	while (str[count] != '\0')
 	{
 		byte = byte + _putchar(str[count]);

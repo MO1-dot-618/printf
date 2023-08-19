@@ -1,8 +1,8 @@
 #include "main.h"
 /**
-  * _printf - prints everything with zab
-  * @format: specifier
-  * Return: 0
+  * _printf - prints everything
+  * @fmt: specifier
+  * Return: number of bytes printed
   */
 
 
@@ -10,7 +10,6 @@
 int _printf(const char *fmt, ...)
 {
 	int bytes = 0;
-	char *str;
 	va_list args;
 
 	va_start(args, fmt);
@@ -31,12 +30,8 @@ int _printf(const char *fmt, ...)
 					break;
 
 				case 's':
-				{
-					str = va_arg(args, char*);
-					if (str != NULL)
-						bytes += _puts(str);
+					bytes += _puts(va_arg(args, char*));
 					break;
-				}
 				case '%':
 					bytes += _putchar('%');
 					break;
