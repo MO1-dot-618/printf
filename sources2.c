@@ -45,8 +45,8 @@ int binary(int num)
 
 	if (num == 0)
 	{
-		_putchar("0");
-		return (0);
+		_putchar('0');
+		return (1);
 	}
 
 	temp = num;
@@ -56,7 +56,7 @@ int binary(int num)
 		size++;
 	}
 
-	arr = malloc (size) * sizeof(int);
+	arr = malloc((size) * sizeof(int));
 
 	while (num > 0)
 	{
