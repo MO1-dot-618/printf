@@ -14,7 +14,7 @@ int _printf(const char *fmt, ...)
 
 	if (fmt == NULL)
 	{
-		return (NULL);
+		return (0);
 	}
 
 	va_start(args, fmt);
