@@ -113,6 +113,8 @@ int switch_separator(char c, va_list args)
 			break;
 		case 'p':
 			bytes += number_conversion((uintptr_t)va_arg(args, void*), 16, 'l');
+		case 'S':
+			bytes += print_custom_s(va_arg(args, char*));
 			break;
 	}
 	return (bytes);
@@ -128,6 +130,7 @@ int switch_separator(char c, va_list args)
 int print_unsigned(unsigned int m)
 {
 	unsigned int d, count, c = 0;
+
 	d = m;
 	count = 1;
 
@@ -145,6 +148,13 @@ int print_unsigned(unsigned int m)
 	return (c + 1);
 }
 
+/**
+  * number_conversion - converts to desired base
+  * @base: base
+  * @cac: upper or lower case
+  * @n: number
+  * Return: number of char
+  */
 int number_conversion(long int n, unsigned int base, char cac)
 {
 	unsigned int m, d, count, p, c = 0;
@@ -173,7 +183,7 @@ int number_conversion(long int n, unsigned int base, char cac)
 	for (; count >= 1; count /= base)
 	{
 		p = ((m / count) % base) + 48;
- 		if (p <= 57)
+		if (p <= 57)
 			_putchar(p);
 		else if (cac == 'u')
 			_putchar(p + 7);

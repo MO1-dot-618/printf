@@ -4,6 +4,7 @@
 #include <stdarg.h>
 #include <stdint.h>
 
+int print_custom_s(char *str);
 int print_unsigned(unsigned int);
 int print_rev(char *s);
 int _printf(const char *format, ...);
