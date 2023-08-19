@@ -35,6 +35,7 @@ int pointer_conversion(intptr_t p)
 	int i = 0;
 	int num;
 	int digit;
+	int zeros = 1;
 
 	num = sizeof(p) * 2;
 
@@ -43,7 +44,11 @@ int pointer_conversion(intptr_t p)
 	for (i = num - 1; i >= 0; i--)
 	{
 		digit = (p >> (4 * i)) & 0xF;
-		number_conversion(digit, 16, 'l');
+		if (digit != 0 || !zeros)
+		{
+			zeros = 0;
+			number_conversion(digit, 16, 'l');
+		}
 	}
 	return (num);
 }

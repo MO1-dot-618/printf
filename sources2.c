@@ -84,12 +84,10 @@ int switch_separator(char c, va_list args)
 		case 'c':
 			bytes += _putchar(va_arg(args, int));
 			break;
-
 		case 'd':
 		case 'i':
 			bytes += number_conversion(va_arg(args, int), 10, 'u');
 			break;
-
 		case 's':
 			bytes += _puts(va_arg(args, char*));
 			break;
