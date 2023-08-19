@@ -87,7 +87,7 @@ int switch_separator(char c, va_list args)
 
 		case 'd':
 		case 'i':
-			bytes += print_number(va_arg(args, int));
+			bytes += number_conversion(va_arg(args, int), 10, 'u');
 			break;
 
 		case 's':
@@ -97,10 +97,19 @@ int switch_separator(char c, va_list args)
 			bytes += _putchar('%');
 			break;
 		case 'b':
-			bytes += binary(va_arg(args, int));
+			bytes += number_conversion(va_arg(args, int), 2, 'u');
 			break;
 		case 'u':
 			bytes += print_unsigned(va_arg(args, unsigned int));
+			break;
+		case 'o':
+			bytes += number_conversion(va_arg(args, int), 8, 'u');
+			break;
+		case 'x':
+			bytes += number_conversion(va_arg(args, int), 16, 'l');
+			break;
+		case 'X':
+			bytes += number_conversion(va_arg(args, int), 16, 'u');
 			break;
 	}
 	return (bytes);
@@ -129,6 +138,44 @@ int print_unsigned(unsigned int m)
 	for (; count >= 1; count /= 10)
 	{
 		_putchar(((m / count) % 10) + 48);
+	}
+	return (c + 1);
+}
+
+int number_conversion(int n, unsigned int base, char cac)
+{
+	unsigned int m, d, count, p, c = 0;
+
+	if (n < 0)
+	{
+		_putchar(45);
+		m = n * -1;
+		c++;
+	}
+	else
+	{
+		m = n;
+	}
+
+	d = m;
+	count = 1;
+
+	while (d > (base - 1))
+	{
+		d /= base;
+		count *= base;
+		c++;
+	}
+
+	for (; count >= 1; count /= base)
+	{
+		p = ((m / count) % base) + 48;
+ 		if (p <= 57)
+			_putchar(p);
+		else if (cac == 'u')
+			_putchar(p + 7);
+		else if (cac == 'l')
+			_putchar(p + 39);
 	}
 	return (c + 1);
 }

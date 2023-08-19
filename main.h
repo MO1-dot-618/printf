@@ -12,4 +12,6 @@ int _putchar(int c);
 char *rot13(char *s);
 int print_number(int n);
 int switch_separator(char c, va_list args);
+int number_conversion(int n, unsigned int base, char cac);
+
 #endif
