@@ -2,7 +2,6 @@
 #include <stdio.h>
 int main(void)
 {
-	printf("hello\n");
-	_printf("h%jnello\n");
+	_printf("123 in binary : %b\n", 123);
 	return (0);
 }
