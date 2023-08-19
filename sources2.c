@@ -111,6 +111,9 @@ int switch_separator(char c, va_list args)
 		case 'X':
 			bytes += number_conversion(va_arg(args, int), 16, 'u');
 			break;
+		case 'p':
+			bytes += number_conversion((uintptr_t)va_arg(args, void*), 16, 'l');
+			break;
 	}
 	return (bytes);
 }
@@ -142,7 +145,7 @@ int print_unsigned(unsigned int m)
 	return (c + 1);
 }
 
-int number_conversion(int n, unsigned int base, char cac)
+int number_conversion(long int n, unsigned int base, char cac)
 {
 	unsigned int m, d, count, p, c = 0;
 

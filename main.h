@@ -2,6 +2,7 @@
 #define MAIN_H
 #include <stddef.h>
 #include <stdarg.h>
+#include <stdint.h>
 
 int print_unsigned(unsigned int);
 int print_rev(char *s);
@@ -12,6 +13,6 @@ int _putchar(int c);
 char *rot13(char *s);
 int print_number(int n);
 int switch_separator(char c, va_list args);
-int number_conversion(int n, unsigned int base, char cac);
+int number_conversion(long int n, unsigned int base, char cac);
 
 #endif
