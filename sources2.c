@@ -65,9 +65,8 @@ int binary(int num)
 	}
 	for (j = i - 1; j >= 0; j--)
 		print_number(arr[j]);
-
-    free(arr);
-    return (size);
+	free(arr);
+	return (size);
 }
 
 /**
