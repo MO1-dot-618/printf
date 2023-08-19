@@ -64,7 +64,7 @@ int binary(int num)
 		num /= 2;
 	}
 	for (j = i - 1; j >= 0; j—)
-		_puts("%d", arr[j]);
+		print_number("%d", arr[j]);
 
     free(arr);
     return (size);
