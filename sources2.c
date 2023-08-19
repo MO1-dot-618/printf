@@ -106,8 +106,7 @@ int switch_separator(char c, va_list args)
 	return (bytes);
 }
 
-<<<<<<< HEAD
-=======
+
 /**
  * print_unsigned - prints an unsigned integer.
  * @m: input unsigned integer.
@@ -133,4 +132,4 @@ int print_unsigned(unsigned int m)
 	}
 	return (c + 1);
 }
->>>>>>> e74997d6acb6648dd8bc07a209a199c587555117
+
