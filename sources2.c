@@ -102,3 +102,4 @@ int switch_separator(char c, va_list args)
 	}
 	return (bytes);
 }
+
