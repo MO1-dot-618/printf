@@ -3,6 +3,7 @@
 #include <stddef.h>
 #include <stdarg.h>
 
+int print_unsigned(unsigned int);
 int print_rev(char *s);
 int _printf(const char *format, ...);
 int _puts(char *str);

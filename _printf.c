@@ -12,6 +12,11 @@ int _printf(const char *fmt, ...)
 	int bytes = 0;
 	va_list args;
 
+	if (fmt == NULL)
+	{
+		return (0);
+	}
+
 	va_start(args, fmt);
 	_putchar(-2);
 	while (fmt && *fmt)

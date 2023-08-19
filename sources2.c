@@ -99,7 +99,38 @@ int switch_separator(char c, va_list args)
 		case 'b':
 			bytes += binary(va_arg(args, int));
 			break;
+		case 'u':
+			bytes += print_unsigned(va_arg(args, unsigned int));
+			break;
 	}
 	return (bytes);
 }
 
+<<<<<<< HEAD
+=======
+/**
+ * print_unsigned - prints an unsigned integer.
+ * @m: input unsigned integer.
+ * Return: number of digits
+ */
+
+int print_unsigned(unsigned int m)
+{
+	unsigned int d, count, c = 0;
+	d = m;
+	count = 1;
+
+	while (d > 9)
+	{
+		d /= 10;
+		count *= 10;
+		c++;
+	}
+
+	for (; count >= 1; count /= 10)
+	{
+		_putchar(((m / count) % 10) + 48);
+	}
+	return (c + 1);
+}
+>>>>>>> e74997d6acb6648dd8bc07a209a199c587555117

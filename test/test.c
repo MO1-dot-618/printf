@@ -1,4 +1,5 @@
 #include "../main.h"
+
 #include <stdio.h>
 int print_octal(int n, unsigned int base, char cac)
 {
@@ -46,5 +47,6 @@ int main(void)
 	print_octal(59, 8, 'u');
 	print_octal(59, 2, 'u');
 	_putchar(-1);
+	_printf("unsigned of 156 %u\n", -123);
 	return (0);
 }
