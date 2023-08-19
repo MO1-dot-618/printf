@@ -10,5 +10,5 @@ int _atoi(char *s);
 int _putchar(int c);
 char *rot13(char *s);
 int print_number(int n);
-
+int switch_separator(char c, va_list args);
 #endif

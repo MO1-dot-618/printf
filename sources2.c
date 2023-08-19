@@ -63,9 +63,43 @@ int binary(int num)
 		arr[i++] = num % 2;
 		num /= 2;
 	}
-	for (j = i - 1; j >= 0; j—)
-		print_number("%d", arr[j]);
+	for (j = i - 1; j >= 0; j--)
+		print_number(arr[j]);
 
     free(arr);
     return (size);
+}
+
+/**
+ * switch_separator - switch through operators
+ * @c: specifier
+ * @args: argument in question
+ * Return: number of bytes
+*/
+int switch_separator(char c, va_list args)
+{
+	int bytes = 0;
+
+	switch (c)
+	{
+		case 'c':
+			bytes += _putchar(va_arg(args, int));
+			break;
+
+		case 'd':
+		case 'i':
+			bytes += print_number(va_arg(args, int));
+			break;
+
+		case 's':
+			bytes += _puts(va_arg(args, char*));
+			break;
+		case '%':
+			bytes += _putchar('%');
+			break;
+		case 'b':
+			bytes += binary(va_arg(args, int));
+			break;
+	}
+	return (bytes);
 }

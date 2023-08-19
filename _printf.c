@@ -18,24 +18,7 @@ int _printf(const char *fmt, ...)
 	{
 		if (*fmt == '%')
 		{
-			switch (*(fmt + 1))
-			{
-				case 'c':
-					bytes += _putchar(va_arg(args, int));
-					break;
-
-				case 'd':
-				case 'i':
-					bytes += print_number(va_arg(args, int));
-					break;
-
-				case 's':
-					bytes += _puts(va_arg(args, char*));
-					break;
-				case '%':
-					bytes += _putchar('%');
-					break;
-			}
+			bytes += switch_separator(*(fmt + 1), args);
 			fmt++;
 		}
 		else
