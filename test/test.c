@@ -1,7 +1,8 @@
 #include "../main.h"
-
+#include <stdio.h>
 int main(void)
 {
-	_printf("h%ello\n");
+	printf("hello\n");
+	_printf("h%jnello\n");
 	return (0);
 }
