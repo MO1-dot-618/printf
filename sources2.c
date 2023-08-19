@@ -112,7 +112,8 @@ int switch_separator(char c, va_list args)
 			bytes += number_conversion(va_arg(args, int), 16, 'u');
 			break;
 		case 'p':
-			bytes += number_conversion((uintptr_t)va_arg(args, void*), 16, 'l');
+			bytes += pointer_conversion((intptr_t) va_arg(args, void*));
+			break;
 		case 'S':
 			bytes += print_custom_s(va_arg(args, char*));
 			break;
