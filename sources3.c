@@ -23,3 +23,32 @@ int print_custom_s(char *str)
 	}
 	return (i);
 }
+
+/**
+  * pointer_conversion - converts to desired base
+  * @base:
+  * Return: number of char
+  */
+
+int pointer_conversion(intptr_t p)
+{
+	int i = 0;
+	int num;
+	int digit;
+	int zeros = 1;
+
+	num = sizeof(p) * 2;
+
+	_puts("0x");
+
+	for (i = num - 1; i >= 0; i--)
+	{
+		digit = (p >> (4 * i)) & 0xF;
+		if (digit != 0 || !zeros)
+		{
+			zeros = 0;
+			number_conversion(digit, 16, 'l');
+		}
+	}
+	return (num);
+}

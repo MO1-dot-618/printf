@@ -4,6 +4,7 @@
 #include <stdarg.h>
 #include <stdint.h>
 
+int pointer_conversion(intptr_t p);
 int print_custom_s(char *str);
 int print_unsigned(unsigned int);
 int print_rev(char *s);
