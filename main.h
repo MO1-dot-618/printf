@@ -11,7 +11,7 @@ int _printf(const char *format, ...);
 int _puts(char *str);
 int _atoi(char *s);
 int _putchar(int c);
-char *rot13(char *s);
+int rot13(char *s);
 int print_number(int n);
 int switch_separator(char c, va_list args);
 int number_conversion(long int n, unsigned int base, char cac);

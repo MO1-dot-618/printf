@@ -7,7 +7,7 @@
  * Return: the pointer to dest.
  */
 
-char *rot13(char *s)
+int rot13(char *s)
 {
 	int count = 0, i;
 	char alphabet[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -19,14 +19,14 @@ char *rot13(char *s)
 		{
 			if (*(s + count) == alphabet[i])
 			{
-				*(s + count) = rot13[i];
+				_putchar(rot13[i]);
 				break;
 			}
 		}
 		count++;
 	}
 
-	return (s);
+	return (count);
 }
 
 /**
@@ -113,8 +113,15 @@ int switch_separator(char c, va_list args)
 			break;
 		case 'p':
 			bytes += number_conversion((uintptr_t)va_arg(args, void*), 16, 'l');
+			break;
 		case 'S':
 			bytes += print_custom_s(va_arg(args, char*));
+			break;
+		case 'R':
+			bytes += rot13(va_arg(args, char*));
+			break;
+		case 'r':
+			bytes += print_rev(va_arg(args, char*));
 			break;
 	}
 	return (bytes);
