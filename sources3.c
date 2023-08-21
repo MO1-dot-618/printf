@@ -16,7 +16,7 @@ int print_custom_s(char *str)
 		{
 			_putchar(92);
 			_putchar('x');
-			number_conversion(str[i], 'X');
+			number_conversion(str[i], 'X', 0);
 		}
 		else
 			_putchar(str[i]);
@@ -47,7 +47,7 @@ int pointer_conversion(intptr_t p)
 		if (digit != 0 || !zeros)
 		{
 			zeros = 0;
-			number_conversion(digit, 'x');
+			number_conversion(digit, 'x', 0);
 		}
 	}
 	return (num);

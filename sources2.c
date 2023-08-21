@@ -78,6 +78,8 @@ int binary(int num)
 int switch_separator(char c, va_list args)
 {
 	int bytes = 0;
+	int flag_i;
+	int flag;
 
 	switch (c)
 	{
@@ -90,7 +92,7 @@ int switch_separator(char c, va_list args)
 		case 'o':
 		case 'x':
 		case 'X':
-			bytes += number_conversion(va_arg(args, int), c);
+			bytes += number_conversion(va_arg(args, int), c, flags);
 			break;
 		case 's':
 			bytes += _puts(va_arg(args, char*));
@@ -113,6 +115,23 @@ int switch_separator(char c, va_list args)
 		case 'r':
 			bytes += print_rev(va_arg(args, char*));
 			break;
+		case '+':
+		case ' ':
+			flag_i = 0;
+			 while (flagtype[flag_i].chara != 0)
+			 {
+				  if (flagtype[flag_i].chara == c)
+				  {
+					  break;
+				  }
+				  flag_i++;
+			 }
+			 if (flagtype[flag_i].chara != 0)
+			 {
+				 flag = flagtype[flag_i].flag;
+				  bytes += number_conversion(va_arg(args, int), c, flag);
+			 }
+			 break;
 	}
 	return (bytes);
 }
@@ -145,13 +164,13 @@ int print_unsign(unsigned int m)
 	return (c + 1);
 }
 
-/**
+/*
   * number_conversion - converts to desired base
   * @specifier: char
   * @n: number
   * Return: number of char
   */
-int number_conversion(long int n, char specifier)
+int number_conversion(long int n, char specifier, int flags)
 {
 	unsigned int m, d, base, count, p, c = 0;
 
@@ -169,6 +188,17 @@ int number_conversion(long int n, char specifier)
 		m = n * -1;
 		c++;
 	}
+	if (n >= 0 && (flags & FLAG_PLUS))
+	{
+		 _putchar('+');
+		 c++;
+	}
+	else if (n >= 0 && (flags & FLAG_SPACE))
+	{
+		 _putchar(' ');
+		 c++;
+	}
+
 	else
 		m = n;
 	d = m;
@@ -191,4 +221,3 @@ int number_conversion(long int n, char specifier)
 	}
 	return (c + 1);
 }
-
