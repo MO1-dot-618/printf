@@ -86,7 +86,11 @@ int switch_separator(char c, va_list args)
 			break;
 		case 'd':
 		case 'i':
-			bytes += number_conversion(va_arg(args, int), 10, 'u');
+		case 'b':
+		case 'o':
+		case 'x':
+		case 'X':
+			bytes += number_conversion(va_arg(args, int), c);
 			break;
 		case 's':
 			bytes += _puts(va_arg(args, char*));
@@ -94,20 +98,8 @@ int switch_separator(char c, va_list args)
 		case '%':
 			bytes += _putchar('%');
 			break;
-		case 'b':
-			bytes += number_conversion(va_arg(args, int), 2, 'u');
-			break;
 		case 'u':
-			bytes += print_unsigned(va_arg(args, unsigned int));
-			break;
-		case 'o':
-			bytes += number_conversion(va_arg(args, int), 8, 'u');
-			break;
-		case 'x':
-			bytes += number_conversion(va_arg(args, int), 16, 'l');
-			break;
-		case 'X':
-			bytes += number_conversion(va_arg(args, int), 16, 'u');
+			bytes += print_unsign(va_arg(args, unsigned int));
 			break;
 		case 'p':
 			bytes += pointer_conversion((intptr_t) va_arg(args, void*));
@@ -127,12 +119,12 @@ int switch_separator(char c, va_list args)
 
 
 /**
- * print_unsigned - prints an unsigned integer.
+ * print_unsign - prints an unsigned integer.
  * @m: input unsigned integer.
  * Return: number of digits
  */
 
-int print_unsigned(unsigned int m)
+int print_unsign(unsigned int m)
 {
 	unsigned int d, count, c = 0;
 
@@ -155,15 +147,22 @@ int print_unsigned(unsigned int m)
 
 /**
   * number_conversion - converts to desired base
-  * @base: base
-  * @cac: upper or lower case
+  * @specifier: char
   * @n: number
   * Return: number of char
   */
-int number_conversion(long int n, unsigned int base, char cac)
+int number_conversion(long int n, char specifier)
 {
-	unsigned int m, d, count, p, c = 0;
+	unsigned int m, d, base, count, p, c = 0;
 
+	if (specifier == 'd' || specifier == 'i')
+		base = 10;
+	else if (specifier == 'x' || specifier == 'X')
+		base = 16;
+	else if (specifier == 'o')
+		base = 8;
+	else if (specifier == 'b')
+		base = 2;
 	if (n < 0)
 	{
 		_putchar(45);
@@ -171,28 +170,23 @@ int number_conversion(long int n, unsigned int base, char cac)
 		c++;
 	}
 	else
-	{
 		m = n;
-	}
-
 	d = m;
 	count = 1;
-
 	while (d > (base - 1))
 	{
 		d /= base;
 		count *= base;
 		c++;
 	}
-
 	for (; count >= 1; count /= base)
 	{
 		p = ((m / count) % base) + 48;
 		if (p <= 57)
 			_putchar(p);
-		else if (cac == 'u')
+		else if (specifier == 'X')
 			_putchar(p + 7);
-		else if (cac == 'l')
+		else if (specifier == 'x')
 			_putchar(p + 39);
 	}
 	return (c + 1);
