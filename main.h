@@ -11,15 +11,8 @@ typedef struct
 	char chara;
 	int flag;
 } flagtypes;
-flagtypes flagtype[] = 
-{
-	{'+', FLAG_PLUS},
-	{' ', FLAG_SPACE},
-	{'#', FLAG_HASH},
-	{'0', FLAG_ZERO},
-	{'-', FLAG_NEG},
-	{0, 0}
-};
+
+extern flagtypes flagtype[];
 
 #include <stddef.h>
 #include <stdarg.h>

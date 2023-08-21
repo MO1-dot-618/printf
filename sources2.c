@@ -1,6 +1,16 @@
 #include "main.h"
 #include <stdlib.h>
 
+flagtypes flagtype[] = 
+{
+	{'+', FLAG_PLUS},
+	{' ', FLAG_SPACE},
+	{'#', FLAG_HASH},
+	{'0', FLAG_ZERO},
+	{'-', FLAG_NEG},
+	{0, 0}
+};
+
 /**
  * rot13 - encodes a string using rot13
  * @s: input string.
@@ -92,7 +102,7 @@ int switch_separator(char c, va_list args)
 		case 'o':
 		case 'x':
 		case 'X':
-			bytes += number_conversion(va_arg(args, int), c, flags);
+			bytes += number_conversion(va_arg(args, int), c, 0);
 			break;
 		case 's':
 			bytes += _puts(va_arg(args, char*));
