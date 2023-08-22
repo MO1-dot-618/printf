@@ -26,7 +26,7 @@ int print_custom_s(char *str)
 
 /**
   * pointer_conversion - converts to desired base
-  * @base:
+  * @p: pointer
   * Return: number of char
   */
 

@@ -145,7 +145,7 @@ int print_unsign(unsigned int m)
 	return (c + 1);
 }
 
-/*
+/**
   * number_conversion - converts to desired base
   * @specifier: char
   * @n: number
