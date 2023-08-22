@@ -155,7 +155,7 @@ int number_conversion(long int n, char specifier)
 {
 	unsigned int m, d, base, count, p, c = 0;
 
-	if (specifier == 'd' || specifier == 'i')
+	if (specifier == 'd' || specifier == 'i' || specifier == 'h')
 		base = 10;
 	else if (specifier == 'x' || specifier == 'X')
 		base = 16;
@@ -163,6 +163,8 @@ int number_conversion(long int n, char specifier)
 		base = 8;
 	else if (specifier == 'b')
 		base = 2;
+	if (specifier == 'h')
+		n = (short int) n;
 	if (n < 0)
 	{
 		_putchar(45);

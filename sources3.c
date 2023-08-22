@@ -72,6 +72,12 @@ int flag_checker(const char *s, va_list args)
 				bytes += _putchar(*s);
 			bytes += number_conversion(num, *(s + 1));
 			break;
+		case 'l':
+			bytes += number_conversion(va_arg(args, long int), 'd');
+			break;
+		case 'h':
+			bytes += number_conversion(va_arg(args, int), 'h');
+			break;
 	}
 	return (bytes);
 }
