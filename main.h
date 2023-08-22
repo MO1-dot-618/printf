@@ -28,7 +28,8 @@ int _atoi(char *s);
 int _putchar(int c);
 int rot13(char *s);
 int print_number(int n);
-int switch_separator(char c, va_list args);
-int number_conversion(long int n, char separator, int flags);
+int switch_specifier(char c, va_list args);
+int flag_checker(const char *s, va_list args);
+int number_conversion(long int n, char separator);
 
 #endif

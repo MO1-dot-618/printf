@@ -1,16 +1,6 @@
 #include "main.h"
 #include <stdlib.h>
 
-flagtypes flagtype[] = 
-{
-	{'+', FLAG_PLUS},
-	{' ', FLAG_SPACE},
-	{'#', FLAG_HASH},
-	{'0', FLAG_ZERO},
-	{'-', FLAG_NEG},
-	{0, 0}
-};
-
 /**
  * rot13 - encodes a string using rot13
  * @s: input string.
@@ -80,25 +70,14 @@ int binary(int num)
 }
 
 /**
- * switch_separator - switch through operators
+ * switch_specifier - switch through operators
  * @c: specifier
  * @args: argument in question
  * Return: number of bytes
 */
-int switch_separator(char c, va_list args)
+int switch_specifier(char c, va_list args)
 {
 	int bytes = 0;
-	int flag_i = 0;
-	int flags = 0;
-
-	while (flagtype[flag_i].chara != 0)
-	{
-		 if (flagtype[flag_i].chara == c)
-		 {
-			 flags |= 1 << flagtype[flag_i].type;
-		 }
-		 flag_i++;
-	}
 
 	switch (c)
 	{
@@ -111,8 +90,7 @@ int switch_separator(char c, va_list args)
 		case 'o':
 		case 'x':
 		case 'X':
-
-			bytes += number_conversion(va_arg(args, int), c, 0);
+			bytes += number_conversion(va_arg(args, int), c);
 			break;
 		case 's':
 			bytes += _puts(va_arg(args, char*));
@@ -167,17 +145,17 @@ int print_unsign(unsigned int m)
 	return (c + 1);
 }
 
-/*
+/**
   * number_conversion - converts to desired base
   * @specifier: char
   * @n: number
   * Return: number of char
   */
-int number_conversion(long int n, char specifier, int flags)
+int number_conversion(long int n, char specifier)
 {
 	unsigned int m, d, base, count, p, c = 0;
 
-	if (specifier == 'd' || specifier == 'i')
+	if (specifier == 'd' || specifier == 'i' || specifier == 'h')
 		base = 10;
 	else if (specifier == 'x' || specifier == 'X')
 		base = 16;
@@ -185,23 +163,14 @@ int number_conversion(long int n, char specifier, int flags)
 		base = 8;
 	else if (specifier == 'b')
 		base = 2;
+	if (specifier == 'h')
+		n = (short int) n;
 	if (n < 0)
 	{
 		_putchar(45);
 		m = n * -1;
 		c++;
 	}
-	if (n >= 0 && (flags & FLAG_PLUS))
-	{
-		 _putchar('+');
-		 c++;
-	}
-	else if (n >= 0 && (flags & FLAG_SPACE))
-	{
-		 _putchar(' ');
-		 c++;
-	}
-
 	else
 		m = n;
 	d = m;

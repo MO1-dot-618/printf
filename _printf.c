@@ -9,7 +9,7 @@
 
 int _printf(const char *fmt, ...)
 {
-	int bytes = 0;
+	int bytes = 0, flags = 0;
 	va_list args;
 
 	if (fmt == NULL)
@@ -23,7 +23,15 @@ int _printf(const char *fmt, ...)
 	{
 		if (*fmt == '%')
 		{
-			bytes += switch_separator(*(fmt + 1), args);
+			flags += flag_checker((fmt + 1), args);
+			if (flags > 0)
+			{
+				fmt++;
+				bytes += flags;
+				flags = 0;
+			}
+			else
+				bytes += switch_specifier(*(fmt + 1), args);
 			fmt++;
 		}
 		else
