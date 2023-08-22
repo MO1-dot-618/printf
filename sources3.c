@@ -78,6 +78,18 @@ int flag_checker(const char *s, va_list args)
 		case 'h':
 			bytes += number_conversion(va_arg(args, int), 'h');
 			break;
+		case '#':
+			if (*(s + 1) == 'o')
+				bytes += _putchar('0');
+			else if (*(s + 1) == 'x' || *(s + 1) == 'X')
+			{
+				bytes += _putchar('0');
+				bytes += _putchar(*(s + 1));
+			}
+			else
+				break;
+			bytes += number_conversion(va_arg(args, int), *(s + 1));
+			break;
 	}
 	return (bytes);
 }
