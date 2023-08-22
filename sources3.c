@@ -16,7 +16,7 @@ int print_custom_s(char *str)
 		{
 			_putchar(92);
 			_putchar('x');
-			number_conversion(str[i], 'X', 0);
+			number_conversion(str[i], 'X');
 		}
 		else
 			_putchar(str[i]);
@@ -47,8 +47,31 @@ int pointer_conversion(intptr_t p)
 		if (digit != 0 || !zeros)
 		{
 			zeros = 0;
-			number_conversion(digit, 'x', 0);
+			number_conversion(digit, 'x');
 		}
 	}
 	return (num);
+}
+/**
+  * flag_checker - checks for flags and prints accordingly
+  * @s: string
+  * @args: va_list
+  * Return: number of bytes printed
+  */
+
+int flag_checker(const char *s, va_list args)
+{
+	int num, bytes = 0;
+
+	switch (*s)
+	{
+		case '+':
+		case ' ':
+			num = va_arg(args, int);
+			if (num >= 0 && *(s + 1) == 'd')
+				bytes += _putchar(*s);
+			bytes += number_conversion(num, *(s + 1));
+			break;
+	}
+	return (bytes);
 }

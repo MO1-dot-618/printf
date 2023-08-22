@@ -1,16 +1,6 @@
 #include "main.h"
 #include <stdlib.h>
 
-flagtypes flagtype[] = 
-{
-	{'+', FLAG_PLUS},
-	{' ', FLAG_SPACE},
-	{'#', FLAG_HASH},
-	{'0', FLAG_ZERO},
-	{'-', FLAG_NEG},
-	{0, 0}
-};
-
 /**
  * rot13 - encodes a string using rot13
  * @s: input string.
@@ -80,16 +70,14 @@ int binary(int num)
 }
 
 /**
- * switch_separator - switch through operators
+ * switch_specifier - switch through operators
  * @c: specifier
  * @args: argument in question
  * Return: number of bytes
 */
-int switch_separator(char c, va_list args)
+int switch_specifier(char c, va_list args)
 {
 	int bytes = 0;
-	int flag_i;
-	int flag;
 
 	switch (c)
 	{
@@ -102,7 +90,7 @@ int switch_separator(char c, va_list args)
 		case 'o':
 		case 'x':
 		case 'X':
-			bytes += number_conversion(va_arg(args, int), c, 0);
+			bytes += number_conversion(va_arg(args, int), c);
 			break;
 		case 's':
 			bytes += _puts(va_arg(args, char*));
@@ -125,23 +113,6 @@ int switch_separator(char c, va_list args)
 		case 'r':
 			bytes += print_rev(va_arg(args, char*));
 			break;
-		case '+':
-		case ' ':
-			flag_i = 0;
-			 while (flagtype[flag_i].chara != 0)
-			 {
-				  if (flagtype[flag_i].chara == c)
-				  {
-					  break;
-				  }
-				  flag_i++;
-			 }
-			 if (flagtype[flag_i].chara != 0)
-			 {
-				 flag = flagtype[flag_i].flag;
-				  bytes += number_conversion(va_arg(args, int), c, flag);
-			 }
-			 break;
 	}
 	return (bytes);
 }
@@ -180,7 +151,7 @@ int print_unsign(unsigned int m)
   * @n: number
   * Return: number of char
   */
-int number_conversion(long int n, char specifier, int flags)
+int number_conversion(long int n, char specifier)
 {
 	unsigned int m, d, base, count, p, c = 0;
 
@@ -198,17 +169,6 @@ int number_conversion(long int n, char specifier, int flags)
 		m = n * -1;
 		c++;
 	}
-	if (n >= 0 && (flags & FLAG_PLUS))
-	{
-		 _putchar('+');
-		 c++;
-	}
-	else if (n >= 0 && (flags & FLAG_SPACE))
-	{
-		 _putchar(' ');
-		 c++;
-	}
-
 	else
 		m = n;
 	d = m;
