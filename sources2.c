@@ -88,8 +88,17 @@ int binary(int num)
 int switch_separator(char c, va_list args)
 {
 	int bytes = 0;
-	int flag_i;
-	int flag;
+	int flag_i = 0;
+	int flags = 0;
+
+	while (flagtype[flag_i].chara != 0)
+	{
+		 if (flagtype[flag_i].chara == c)
+		 {
+			 flags |= 1 << flagtype[flag_i].type;
+		 }
+		 flag_i++;
+	}
 
 	switch (c)
 	{
@@ -102,6 +111,7 @@ int switch_separator(char c, va_list args)
 		case 'o':
 		case 'x':
 		case 'X':
+
 			bytes += number_conversion(va_arg(args, int), c, 0);
 			break;
 		case 's':
@@ -125,23 +135,6 @@ int switch_separator(char c, va_list args)
 		case 'r':
 			bytes += print_rev(va_arg(args, char*));
 			break;
-		case '+':
-		case ' ':
-			flag_i = 0;
-			 while (flagtype[flag_i].chara != 0)
-			 {
-				  if (flagtype[flag_i].chara == c)
-				  {
-					  break;
-				  }
-				  flag_i++;
-			 }
-			 if (flagtype[flag_i].chara != 0)
-			 {
-				 flag = flagtype[flag_i].flag;
-				  bytes += number_conversion(va_arg(args, int), c, flag);
-			 }
-			 break;
 	}
 	return (bytes);
 }

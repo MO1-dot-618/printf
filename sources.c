@@ -57,12 +57,7 @@ int _puts(char *str)
 	{
 		return (0);
 	}
-	while (str[count] != '\0')
-	{
-		byte = byte + _putchar(str[count]);
-		count++;
-	}
-	return (count);
+
 }
 /**
  * _atoi - converts a string to an integer.

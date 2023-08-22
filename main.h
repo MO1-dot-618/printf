@@ -9,7 +9,7 @@
 typedef struct
 {
 	char chara;
-	int flag;
+	int type;
 } flagtypes;
 
 extern flagtypes flagtype[];
